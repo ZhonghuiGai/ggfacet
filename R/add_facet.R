@@ -30,6 +30,6 @@ add_facet <- function(p, label,
                                     size = size,
                                     angle = 0,
                                     face = face))
-  p <- p + theme(strip.background = ggfun::element_roundrect(r = r))
+  p <- p + theme(strip.background = element_roundrect(r = r))
   return(p)
 }

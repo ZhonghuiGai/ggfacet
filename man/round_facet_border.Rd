@@ -18,7 +18,7 @@ Round rectangle border of facet. A swap function of ggfun
 }
 \examples{
 p <- ggplot(mpg, aes(displ, cty)) + geom_point() + facet_grid(cols = vars(cyl))
-round_facet_strip(p, r = 0.25)
+round_facet_border(p, r = 0.25)
 }
 \author{
 Zhonghui Gai
