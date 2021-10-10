@@ -37,29 +37,20 @@ element_grob.element_roundrect <- function(element,
                                            x = 0.5, y = 0.5, width = 1, height = 1,
                                            fill = NULL, colour = NULL, size = NULL, linetype = NULL,
                                            ...) {
-
+  # step 1 make a function for step 2
+  len0_null <- function (x){if (length(x) == 0) NULL else x}
+  # step 2 calculate the new and old par
   gp <- grid::gpar(lwd = len0_null(size * .pt),
-                   col = colour,
-                   fill = fill,
-                   lty = linetype
-  )
-  element_gp <- grid::gpar(lwd = len0_null(element$size * .pt),
-                           col = element$colour,
-                           fill = element$fill,
-                           lty = element$linetype
-  )
-
+                   col = colour, fill = fill, lty = linetype)
+  element_gp <- grid::gpar(lwd = len0_null(element$size * .pt), col = element$colour,
+                           fill = element$fill, lty = element$linetype)
+  # step 3 make a function for step 3
+  modify_list <- function (old, new){for (i in names(new)) old[[i]] <- new[[i]]; old}
+  # step 4 a new function
   grid::roundrectGrob(x, y, width, height, r = element$r, gp = modify_list(element_gp, gp), ...)
 }
 
-len0_null <- function (x){
-  if (length(x) == 0)
-    NULL
-  else x
-}
 
-modify_list <- function (old, new){
-  for (i in names(new)) old[[i]] <- new[[i]]
-  old
-}
+
+
 
